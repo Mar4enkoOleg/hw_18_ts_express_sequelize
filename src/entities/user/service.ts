@@ -15,3 +15,16 @@ export const createService = async (userAttributes: UserAttributes) => {
   const user = await User.create({ ...userAttributes });
   return user;
 };
+
+export const updateService = async (
+  id: number,
+  userAttributes: UserAttributes
+) => {
+  const user = await User.update({ ...userAttributes }, { where: { id } });
+  return user;
+};
+
+export const deleteService = async (id: number) => {
+  const user = await User.destroy({ where: { id } });
+  return user;
+};

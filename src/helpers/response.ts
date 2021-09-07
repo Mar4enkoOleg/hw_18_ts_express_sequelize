@@ -19,7 +19,7 @@ class Res {
     });
   }
 
-  static BadRequest(res: Response, message = "Bad Requset"): Response {
+  static BadRequest(res: Response, message = "Bad Request"): Response {
     return res.status(httpCode.BAD_REQUEST).json({
       message,
     });
