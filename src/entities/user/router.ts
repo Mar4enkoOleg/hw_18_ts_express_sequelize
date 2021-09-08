@@ -1,15 +1,12 @@
 import { Router } from "express";
-import { create, getAll, getById, remove, update } from "./controller";
+import { authenticateToken } from "../../middlewares/auth";
+import { getAll, login, registration } from "./controller";
 
 const router = Router();
 
 router
-  .get("/", getAll)
-  .get("/:id", getById)
-  .post("/", create)
-  .put("/:id", update)
-  .delete("/:id", remove)
-  .post("/login")
-  .post("/registration");
+  .get("/", authenticateToken, getAll)
+  .post("/login", login)
+  .post("/registration", registration);
 
 export default router;

@@ -7,7 +7,9 @@ export const getByIdService = async (id: number) => {
 };
 
 export const getAllService = async () => {
-  const users = await User.findAll();
+  const users = await User.findAll({
+    attributes: ["first_name", "last_name", "avatar", "email"],
+  });
   return users;
 };
 
@@ -26,5 +28,10 @@ export const updateService = async (
 
 export const deleteService = async (id: number) => {
   const user = await User.destroy({ where: { id } });
+  return user;
+};
+
+export const getByEmailService = async (email: string) => {
+  const user = await User.findOne({ where: { email } });
   return user;
 };

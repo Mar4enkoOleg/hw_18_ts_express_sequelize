@@ -44,7 +44,12 @@ class Res {
   }
 
   static InternalError(res: Response, message = "Internal ..."): Response {
-    return res.status(httpCode.CONFLICT).json({
+    return res.status(httpCode.INTERNAL_SERVER_ERROR).json({
+      message,
+    });
+  }
+  static NotFound(res: Response, message = "Resourse not found"): Response {
+    return res.status(httpCode.NOT_FOUND).json({
       message,
     });
   }
