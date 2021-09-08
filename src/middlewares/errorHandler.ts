@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import Logger from "../config/winston";
 
 export default function (
   err: Error,
@@ -7,7 +8,9 @@ export default function (
   next: NextFunction
 ) {
   if (err) {
+    Logger.error(err);
     return res.status(400).json({ message: err.message });
   }
+  Logger.error(err);
   return res.status(500).json({ message: "Internal error" });
 }

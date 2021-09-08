@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import Logger from "../config/winston";
 import Res from "../helpers/response";
 import { generateAccessToken } from "../middlewares/auth";
 import {
@@ -24,6 +25,7 @@ export const login = async (
       return Res.Forbidden(res);
     }
     const token = generateAccessToken(req.body.email);
+    Logger.info(`${req.body.email}`);
     return Res.Success(res, { message: "Success", token });
   } catch (err) {
     return next(err);
@@ -43,6 +45,8 @@ export const registration = async (
 
     const user = await createService(userInstance);
     const token = generateAccessToken(req.body.email);
+    Logger.info(`${req.body.email}`);
+
     return Res.Created(res, { user, token });
   } catch (err) {
     return next(err);
