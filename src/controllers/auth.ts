@@ -1,12 +1,11 @@
 import { Request, Response } from "express";
-import Res from "../../helpers/response";
-import { generateAccessToken } from "../../middlewares/auth";
+import Res from "../helpers/response";
+import { generateAccessToken } from "../middlewares/auth";
 import {
-  getAllService,
-  createService,
   getByEmailService,
   comparePasswordService,
-} from "./service";
+  createService,
+} from "../services/auth";
 
 export const login = async (req: Request, res: Response) => {
   try {
@@ -38,23 +37,6 @@ export const registration = async (req: Request, res: Response) => {
     const token = generateAccessToken(req.body.email);
     return Res.Created(res, { user, token });
   } catch (err) {
-    return Res.BadRequest(res);
-  }
-};
-
-export const getAll = async (
-  req: Request,
-  res: Response
-): Promise<Response> => {
-  try {
-    const users = await getAllService();
-
-    if (!users.length) {
-      return Res.NotFound(res, "There are no users in DB");
-    }
-
-    return Res.Success(res, users);
-  } catch (error) {
     return Res.BadRequest(res);
   }
 };

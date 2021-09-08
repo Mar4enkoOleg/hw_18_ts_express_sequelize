@@ -1,7 +1,7 @@
 import express from "express";
 import server_config from "./src/config/server";
 import { sequelize } from "./src/db/models";
-import userRouter from "./src/entities/user/router";
+import { userRouter, authRouter } from "./src/routes/";
 
 const app = express();
 
@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/user", userRouter);
+app.use("/auth", authRouter);
 
 const start = async () => {
   try {
