@@ -1,11 +1,12 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import Res from "../helpers/response";
 import { getAllService } from "../services/user";
 
 export const getAll = async (
   req: Request,
-  res: Response
-): Promise<Response> => {
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const users = await getAllService();
 
@@ -14,7 +15,7 @@ export const getAll = async (
     }
 
     return Res.Success(res, users);
-  } catch (error) {
-    return Res.BadRequest(res);
+  } catch (err) {
+    return next(err);
   }
 };

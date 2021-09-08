@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import Res from "../helpers/response";
 import { generateAccessToken } from "../middlewares/auth";
 import {
@@ -7,7 +7,11 @@ import {
   createService,
 } from "../services/auth";
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const user = await getByEmailService(req.body.email);
     if (!user)
@@ -22,11 +26,15 @@ export const login = async (req: Request, res: Response) => {
     const token = generateAccessToken(req.body.email);
     return Res.Success(res, { message: "Success", token });
   } catch (err) {
-    return Res.BadRequest(res);
+    return next(err);
   }
 };
 
-export const registration = async (req: Request, res: Response) => {
+export const registration = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const candidate = await getByEmailService(req.body.email);
     if (candidate)
@@ -37,6 +45,6 @@ export const registration = async (req: Request, res: Response) => {
     const token = generateAccessToken(req.body.email);
     return Res.Created(res, { user, token });
   } catch (err) {
-    return Res.BadRequest(res);
+    return next(err);
   }
 };
