@@ -1,6 +1,6 @@
 import User from "../db/models/user";
 import { UserAttributes } from "../interfaces";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 export const getByIdService = async (id: number) => {
   const user = await User.findOne({ where: { id } });
@@ -9,7 +9,14 @@ export const getByIdService = async (id: number) => {
 
 export const getAllService = async () => {
   const users = await User.findAll({
-    attributes: ["first_name", "last_name", "avatar", "email", "created_at"],
+    attributes: [
+      "first_name",
+      "last_name",
+      "avatar",
+      "email",
+      "created_at",
+      "password",
+    ],
   });
   return users;
 };

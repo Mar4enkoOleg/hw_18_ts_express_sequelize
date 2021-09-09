@@ -1,6 +1,6 @@
 import User from "../db/models/user";
 import { UserAttributes } from "../interfaces";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 export const createService = async (userAttributes: UserAttributes) => {
   const hashedPassword = await bcrypt.hash(userAttributes.password, 10);

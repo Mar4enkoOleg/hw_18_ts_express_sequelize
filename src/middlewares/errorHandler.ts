@@ -7,7 +7,7 @@ export default function (
   res: Response,
   next: NextFunction
 ) {
-  if (err) {
+  if (err instanceof Error) {
     Logger.error(err);
     return res.status(400).json({ message: err.message });
   }
