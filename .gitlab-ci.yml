@@ -1,0 +1,11 @@
+stages:
+  - test
+  - build
+
+test-source-code:
+  stage: test
+  image: node:14-alpine
+  script:
+    - echo "this test"
+    - npm i
+    - npm run test
