@@ -3,14 +3,14 @@ require("dotenv").config();
 module.exports = {
   development: {
     // local
-    // username: process.env.PG_USER,
-    // password: process.env.PG_PASSWORD,
-    // database: process.env.PG_DATABASE,
-    // host: process.env.PG_HOST,
-    username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DB,
-    host: process.env.DB_HOST,
+    username: process.env.PG_USER,
+    password: process.env.PG_PASSWORD,
+    database: process.env.PG_DATABASE,
+    host: process.env.PG_HOST,
+    // username: process.env.POSTGRES_USER,
+    // password: process.env.POSTGRES_PASSWORD,
+    // database: process.env.POSTGRES_DB,
+    // host: process.env.DB_HOST,
     dialect: "postgres",
     define: {
       freezeTableName: true,

@@ -1,8 +1,8 @@
 export interface UserAttributes {
-  id?: number;
+  id: number;
   first_name: string;
   last_name: string;
   email: string;
-  avatar?: string | null;
+  avatar?: string;
   password: string;
 }

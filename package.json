@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "starttest": "node test/index.js",
+    "predev": "npm run migration:start",
     "dev": "ts-node index.ts",
     "prestart": "npm run migration:start",
     "migration:start": "npx sequelize-cli db:migrate",
