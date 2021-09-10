@@ -1,9 +1,9 @@
 import express from "express";
-import server_config from "./src/config/server";
-import db from "./src/db/models";
-import { userRouter, authRouter } from "./src/routes/";
-import errorHandler from "./src/middlewares/errorHandler";
-import morgan from "./src/middlewares/morgan";
+import server_config from "./config/server";
+import db from "./db/models";
+import { userRouter, authRouter } from "./routes";
+import errorHandler from "./middlewares/errorHandler";
+import morgan from "./middlewares/morgan";
 
 const app = express();
 

@@ -8,26 +8,16 @@ const levels = {
   debug: 4,
 };
 
-const level = () => {
-  const env = process.env.NODE_ENV || "development";
-  const isDevelopment = env === "development";
-  return isDevelopment ? "debug" : "warn";
-};
-
-const colors = {
-  error: "red",
-  warn: "yellow",
-  info: "green",
-  http: "magenta",
-  debug: "white",
-};
-
-winston.addColors(colors);
+// const level = () => {
+//   const env = process.env.NODE_ENV || "development";
+//   const isDevelopment = env === "development";
+//   return isDevelopment ? "debug" : "warn";
+// };
 
 const format = winston.format.combine(
-  winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss:ms" }),
-  winston.format.colorize({ all: true }),
+  winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
   winston.format.prettyPrint(),
+  winston.format.json(),
   winston.format.printf(
     (info) => `${info.timestamp} ${info.level}: ${info.message}`
   )
@@ -43,7 +33,7 @@ const transports = [
 ];
 
 const Logger = winston.createLogger({
-  level: level(),
+  level: "debug",
   levels,
   format,
   transports,

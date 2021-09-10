@@ -6,10 +6,11 @@
   "scripts": {
     "test": "jest --coverage",
     "predev": "npm run migration:start",
-    "dev": "ts-node index.ts",
+    "dev": "ts-node src/index.ts",
     "prestart": "npm run migration:start",
     "migration:start": "npx sequelize-cli db:migrate",
-    "start": "ts-node index.ts"
+    "start": "ts-node src/index.ts",
+    "start:prod": "node dist/index.js"
   },
   "keywords": [],
   "author": "",

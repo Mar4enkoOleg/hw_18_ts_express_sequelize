@@ -1,10 +1,12 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { jwt_secret } from "../config/server";
+import Logger from "../config/winston";
 import Res from "../helpers/response";
 
 export const generateAccessToken = (email: string) => {
-  return jwt.sign(email, jwt_secret as string, {});
+  const payload = { email: email };
+  return jwt.sign(payload, jwt_secret as string, { expiresIn: "1h" });
 };
 
 export const authenticateToken = (
@@ -19,8 +21,9 @@ export const authenticateToken = (
     return Res.Unauthorized(res);
   }
 
-  jwt.verify(token, jwt_secret as string, (err: any, email: any) => {
+  jwt.verify(token, jwt_secret as string, (err: any, user: any) => {
     if (err) return Res.Unauthorized(res);
+    Logger.info(`User: ${user.email}`);
 
     next();
   });
