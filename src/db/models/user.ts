@@ -17,6 +17,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
 
     static associate(models: any) {
       // define association here
+      this.belongsTo(models.Order);
     }
   }
   User.init(

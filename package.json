@@ -21,6 +21,7 @@
     "@types/jsonwebtoken": "^8.5.5",
     "@types/morgan": "^1.9.3",
     "@types/sequelize": "^4.28.10",
+    "@types/stripe": "^8.0.417",
     "@types/validator": "^13.6.3",
     "@types/winston": "^2.4.4",
     "jest": "^27.1.1",
@@ -36,6 +37,7 @@
     "morgan": "^1.10.0",
     "pg": "^8.7.1",
     "sequelize": "^6.6.5",
+    "stripe": "^8.174.0",
     "winston": "^3.3.3"
   }
 }

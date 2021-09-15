@@ -1,7 +1,7 @@
 import express from "express";
 import server_config from "./config/server";
 import db from "./db/models";
-import { userRouter, authRouter } from "./routes";
+import { userRouter, authRouter, orderRouter } from "./routes";
 import errorHandler from "./middlewares/errorHandler";
 import morgan from "./middlewares/morgan";
 
@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/user", userRouter);
 app.use("/auth", authRouter);
+app.use("/payment", orderRouter);
 
 app.use(errorHandler);
 
