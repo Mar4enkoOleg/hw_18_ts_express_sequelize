@@ -1,16 +1,53 @@
 "use strict";
+
+const { STRING } = require("sequelize");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Transactions", {
+    await queryInterface.createTable("Transaction", {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       order_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: "Order",
+          key: "id",
+        },
+      },
+      object: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      amount: {
+        type: Sequelize.INTEGER,
+      },
+      currency: {
+        type: Sequelize.STRING,
+      },
+      description: {
+        type: Sequelize.STRING,
+      },
+      failure_message: {
+        type: Sequelize.STRING,
+      },
+      source_id: {
+        type: Sequelize.STRING,
+      },
+      source_object: {
+        type: Sequelize.STRING,
+      },
+      source_brand: {
+        type: Sequelize.STRING,
+      },
+      source_message: {
+        type: Sequelize.STRING,
+      },
+      status: {
+        type: Sequelize.STRING,
       },
       created_at: {
         allowNull: false,
@@ -25,6 +62,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Transactions");
+    await queryInterface.dropTable("Transaction");
   },
 };

@@ -12,8 +12,8 @@ module.exports = (sequelize: any, DataTypes: any) => {
     user_id!: number;
     static associate(models: any) {
       // define association here
-      this.hasOne(models.User);
-      this.belongsTo(models.Transaction);
+      this.belongsTo(models.User);
+      this.hasMany(models.Transaction);
     }
   }
   Order.init(

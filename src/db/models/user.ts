@@ -14,10 +14,11 @@ module.exports = (sequelize: any, DataTypes: any) => {
     email!: string;
     avatar?: string;
     password!: string;
+    customer_number?: string;
 
     static associate(models: any) {
       // define association here
-      this.belongsTo(models.Order);
+      this.hasMany(models.Order);
     }
   }
   User.init(
@@ -44,6 +45,9 @@ module.exports = (sequelize: any, DataTypes: any) => {
         type: DataTypes.STRING,
       },
       avatar: {
+        type: DataTypes.STRING,
+      },
+      customer_number: {
         type: DataTypes.STRING,
       },
     },
